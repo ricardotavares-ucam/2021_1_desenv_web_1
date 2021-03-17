@@ -1,0 +1,25 @@
+
+
+nota1 = float (input("entre com a nota 1 : "))
+nota2 = float (input("entre com a nota 2 : "))
+media = (nota1 + nota2)
+
+if (media >= 6):
+    print("aprovado")
+elif(media >= 5) and (media <6):
+    print("em recuperação")
+else:
+    print("reprovado")
+
+if media >= 9.5:
+    print("media a")
+elif (media >=8.5) and (media <9.5):
+    print("media b")
+elif (media >=7.5) and (media <8.5):
+    print("media c")
+elif (media >=6.0) and (media <7.5):
+    print("media d")
+elif (media >=5.0) and (media <6.0):
+    print("media e")
+else:
+    print("media f")
