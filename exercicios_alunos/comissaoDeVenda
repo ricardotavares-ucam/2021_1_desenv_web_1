@@ -1,0 +1,22 @@
+
+quantidade = int (input("quantidade de produtos vendidos : "))
+valorVenda = float (input("entre com o valor da venda dos pedidos : "))
+comissao = float 
+
+if(quantidade >= 20 and quantidade < 50) :
+    comissao = valorVenda * 0.05
+elif(quantidade >= 50 and quantidade < 100):
+    comissao = valorVenda * 0.075
+elif(quantidade >= 100 and quantidade < 500):
+    comissao = valorVenda * 0.1
+elif(quantidade >= 500 ):
+      comissao = valorVenda * 0.125
+
+print(comissao)
+
+
+
+
+
+
+
