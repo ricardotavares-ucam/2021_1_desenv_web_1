@@ -1,9 +1,9 @@
 from datetime import datetime
 
 def cadastrar_Cliente():
-    codigo_Cliente = int(input("entre com o código do cliente:"))
-    nome_Cliente   = input("entre com o nome do cliente: ")
-    return nome_Cliente, codigo_Cliente
+    codigo_cliente = int(input("entre com o código do cliente:"))
+    nome_cliente   = input("entre com o nome do cliente: ")
+    return codigo_cliente, nome_cliente
 
 def iniciar_corrida():
     dataHora_inicio_corrida = datetime.now() 
@@ -38,16 +38,16 @@ def extrato_topo(informacoes_corrida):
     print("============================================")
     print("-------------Extrato da Corrida-------------")
     print("============================================")
-    print("Código do cliente: {}".format(informacoes_corrida["codigo_Cliente"]))
-    print("Nome do cliente: {}".format(informacoes_corrida["nome_Cliente"]))
+    print("Código do cliente: {}".format(informacoes_corrida["codigo_cliente"]))
+    print("Nome do cliente: {}".format(informacoes_corrida["nome_cliente"]))
     print(datetime.now().strftime("Fatura emetida em Data: %d/%m/%Y  Hora: %H:%M"))
     print("============================================")
 
 def extrato_informacoes_corrida(informacoes_corrida):
-    print("Início da corrida: {}".format(informacoes_corrida["dataHora_inicio_corrida"].strftime('%d/%m/%Y - %H:%M')))
-    print("Fim da corrida: {}".format(informacoes_corrida["dataHora_fim_corrida"].strftime('%d/%m/%Y - %H:%M')))
+    print("Início da corrida: {}".format(informacoes_corrida["dataHora_inicio_corrida"].strftime("%d/%m/%Y - %H:%M")))
+    print("Fim da corrida: {}".format(informacoes_corrida["dataHora_fim_corrida"].strftime("%d/%m/%Y - %H:%M")))
     print("Duração da corrida: {}".format(informacoes_corrida["tempo_total_corrida"]))
-    print("Valor da corrida: {:2.f}".format(informacoes_corrida["valor_corrida"]))
+    print("Valor da corrida R$: {}".format(informacoes_corrida["valor_corrida"]))
 
 def imprimir_extrato(informacoes_corrida):
     extrato_topo(informacoes_corrida)
