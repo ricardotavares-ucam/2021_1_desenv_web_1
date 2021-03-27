@@ -56,8 +56,8 @@ def imprimir_extrato(informacoes_corrida):
 if __name__ == "__main__":
     informacoes_corrida = {}
     informacoes_corrida["codigo_cliente"], informacoes_corrida["nome_cliente"] = cadastrar_Cliente()
-    informacoes_corrida["data_hora_inicio"] = iniciar_corrida()
-    informacoes_corrida["data_hora_termino"] = finalizar_corrida()
-    informacoes_corrida["duracao_corrida"] = calcular_tempo_corrida(informacoes_corrida["data_hora_inicio"], informacoes_corrida["data_hora_termino"])
-    informacoes_corrida["valor_corrida"] = calcular_valor_corrida(informacoes_corrida["duracao_corrida"])
+    informacoes_corrida["dataHora_inicio_corrida"] = iniciar_corrida()
+    informacoes_corrida["dataHora_fim_corrida"] = finalizar_corrida()
+    informacoes_corrida["tempo_total_corrida"] = calcular_tempo_corrida(informacoes_corrida["dataHora_inicio_corrida"], informacoes_corrida["dataHora_fim_corrida"])
+    informacoes_corrida["valor_corrida"] = calcular_valor_corrida(informacoes_corrida["tempo_total_corrida"])
     imprimir_extrato(informacoes_corrida)
