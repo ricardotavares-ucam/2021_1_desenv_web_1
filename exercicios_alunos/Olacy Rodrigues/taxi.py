@@ -1,5 +1,4 @@
 from datetime import datetime
-from time import ctime
 
 def cadastrar_Cliente():
     codigo_Cliente = int(input("entre com o código do cliente:"))
@@ -7,48 +6,58 @@ def cadastrar_Cliente():
     return nome_Cliente, codigo_Cliente
 
 def iniciar_corrida():
-    dataHora_atual = datetime.now() 
-    dataHora_inicio_corrida = dataHora_atual.strftime("Data: %d/%m/%Y  Hora: %H:%M")
-    hora_inicio_corrida = (ctime().split()[3])
-    return dataHora_inicio_corrida, hora_inicio_corrida
+    dataHora_inicio_corrida = datetime.now() 
+    return dataHora_inicio_corrida
 
 def finalizar_corrida():
-    dataHora_atual = datetime.now()
-    dataHora_fim_corrida = dataHora_atual.strftime("Data: %d/%m/%Y  Hora: %H:%M")
-    hora_fim_corrida = (ctime().split()[3])
-    return dataHora_fim_corrida, hora_fim_corrida
+    dataHora_fim_corrida = datetime.now()
+    return dataHora_fim_corrida
+
+def e_bandeira1(dataHora_inicio_corrida):
+    if((dataHora_inicio_corrida.hour>22) and (dataHora_inicio_corrida.hour<6)):
+        return False
+    else:
+        return True
 
 def calcular_tempo_corrida(dataHora_inicio_corrida,dataHora_fim_corrida):
     tempo_total_corrida = (dataHora_fim_corrida - dataHora_inicio_corrida)
+    tempo_total_corrida = int(tempo_total_corrida.seconds/60)
     return tempo_total_corrida
 
-def calcular_sobretaxa(hora_inicio_corrida,hora_fim_corrida,tempo_total_corrida):
+def calcular_valor_corrida(tempo_total_corrida):
     valor_inicial_corrida = 5.50
     valor_corrida_minuto = 0.75
-    sobretaxa = 0.15
-    if((hora_inicio_corrida> 22 ) and (hora_fim_corrida < 6)):
-        valor_corrida = (valor_inicial_corrida +(tempo_total_corrida * valor_corrida_minuto)) * sobretaxa
-    else:
+    sobretaxa_bandeira_2 = 1.15
+    if e_bandeira1:
         valor_corrida = (valor_inicial_corrida +(tempo_total_corrida * valor_corrida_minuto))
+    else:
+        valor_corrida = (valor_inicial_corrida +(tempo_total_corrida * valor_corrida_minuto)) * sobretaxa_bandeira_2
     return valor_corrida
 
 def extrato_topo(informacoes_corrida):
     print("============================================")
     print("-------------Extrato da Corrida-------------")
     print("============================================")
-    print("código do cliente: {}".format(informacoes_corrida["codigo_Cliente"]))
+    print("Código do cliente: {}".format(informacoes_corrida["codigo_Cliente"]))
     print("Nome do cliente: {}".format(informacoes_corrida["nome_Cliente"]))
     print(datetime.now().strftime("Fatura emetida em Data: %d/%m/%Y  Hora: %H:%M"))
     print("============================================")
 
 def extrato_informacoes_corrida(informacoes_corrida):
-    print("Início da corrida: {}".format(informacoes_corrida["dataHora_inicio_corrida"]))
-    print("Fim da corrida: {}".format(informacoes_corrida["dataHora_fim_corrida"]))
+    print("Início da corrida: {}".format(informacoes_corrida["dataHora_inicio_corrida"].strftime('%d/%m/%Y - %H:%M')))
+    print("Fim da corrida: {}".format(informacoes_corrida["dataHora_fim_corrida"].strftime('%d/%m/%Y - %H:%M')))
     print("Duração da corrida: {}".format(informacoes_corrida["tempo_total_corrida"]))
-    print("Valor da corrida: {:2.f}".format(informacoes_corrida[valor_corrida]))
+    print("Valor da corrida: {:2.f}".format(informacoes_corrida["valor_corrida"]))
 
 def imprimir_extrato(informacoes_corrida):
     extrato_topo(informacoes_corrida)
     extrato_informacoes_corrida(informacoes_corrida)
 
-
+if __name__ == "__main__":
+    informacoes_corrida = {}
+    informacoes_corrida["codigo_cliente"], informacoes_corrida["nome_cliente"] = cadastrar_Cliente()
+    informacoes_corrida["data_hora_inicio"] = iniciar_corrida()
+    informacoes_corrida["data_hora_termino"] = finalizar_corrida()
+    informacoes_corrida["duracao_corrida"] = calcular_tempo_corrida(informacoes_corrida["data_hora_inicio"], informacoes_corrida["data_hora_termino"])
+    informacoes_corrida["valor_corrida"] = calcular_valor_corrida(informacoes_corrida["duracao_corrida"])
+    imprimir_extrato(informacoes_corrida)
