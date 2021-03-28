@@ -1,7 +1,8 @@
 from datetime import datetime
+from random import randint
 
 def cadastrar_Cliente():
-    codigo_cliente = int(input("entre com o código do cliente:"))
+    codigo_cliente = randint(10000, 19999)
     nome_cliente   = input("entre com o nome do cliente: ")
     return codigo_cliente, nome_cliente
 
