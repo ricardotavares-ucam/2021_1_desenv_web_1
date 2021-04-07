@@ -1,0 +1,56 @@
+from datetime import datetime, timedelta
+
+def cadastrar_cliente():
+    nome_cliente = input("entre com o nome do cliente:")
+    codigo_cliente = int(input('entre com o codigo do cliente: '))
+    return codigo_cliente, nome_cliente
+
+def iniciar_corrida():
+    data_hora_inicio = datetime.now()
+    return data_hora_inicio
+
+def finalizar_corrida():
+    #delta_tempo_teste = timedelta(hours=0, minutes=20, seconds=0)     para testar 
+    #data_hora_termino = datetime.now() + delta_tempo_teste            o código
+    data_hora_termino = datetime.now()
+    return data_hora_termino
+
+def calcular_tempo_da_corrida(data_hora_inicio, data_hora_termino):
+    duracao_corrida = data_hora_termino-data_hora_inicio
+    duracao_corrida = int(duracao_corrida.seconds/60)
+    return duracao_corrida
+
+def calcular_valor_corrida (duracao_corrida,data_hora_inicio):
+    valor_por_minuto = 0.75
+    valor_inicio_da_corrida = 5.50
+    if ((data_hora_inicio.hour > 22) and (data_hora_inicio.hour < 6)):
+        valor_corrida = (valor_inicio_da_corrida + (valor_por_minuto * duracao_corrida)) * 1.2
+            
+    else:
+        valor_corrida = valor_inicio_da_corrida + (valor_por_minuto * duracao_corrida)
+    return valor_corrida
+
+
+def extrato(dados_corrida):
+    print(" ***************** Extrato da Corrida ***************** ")
+    print("=======================================================")
+    print("nome do cliente: {}".format(dados_corrida['nome_cliente']))
+    print("codigo do cliente: {}".format(dados_corrida['codigo_cliente']))
+    print('Fatura emitida em:')
+    print(datetime.now().strftime('%d/%m/%Y - %H:%M'))
+    print('Início da corrida: {}'.format(dados_corrida['data_hora_inicio'].strftime('%d/%m/%Y - %H:%M')))
+    print('Término da corrida: {}'.format(dados_corrida['data_hora_termino'].strftime('%d/%m/%Y - %H:%M')))
+    print('Duração da corrida: {} minutos'.format(dados_corrida['duracao_corrida']))
+    print('Valor da corrida: R$ {:.2f}'.format(dados_corrida['valor_corrida']))
+
+def imprimir_extrato(dados_corrida):
+    extrato(dados_corrida)
+
+if __name__ == '__main__':
+    dados_corrida = {}
+    dados_corrida['codigo_cliente'], dados_corrida['nome_cliente'] = cadastrar_cliente()
+    dados_corrida['data_hora_inicio'] = iniciar_corrida()
+    dados_corrida['data_hora_termino'] = finalizar_corrida()
+    dados_corrida['duracao_corrida'] = calcular_tempo_da_corrida (dados_corrida['data_hora_inicio'], dados_corrida['data_hora_termino'])
+    dados_corrida['valor_corrida'] = calcular_valor_corrida (dados_corrida['duracao_corrida'], dados_corrida['data_hora_inicio'])
+    imprimir_extrato(dados_corrida)
