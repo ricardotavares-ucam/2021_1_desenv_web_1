@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Sobre Nós{% endblock title %}
+
+{% block content %}
+
+<div class="container my-3">
+    <h1 class="font-weight-bold">{{intro}}</h1>
+    <p>{{info}}</p>
+    <img src="{% static 'images/under_construction.jpg' %}" alt="Em construção" >
+</div>
+
+{% endblock content %}

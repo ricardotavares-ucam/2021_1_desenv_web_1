@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "C:\\Desenvolvimento\\anaconda3\\envs\\aula_django\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.analysis.extraPaths": ["./store"],
+    "python.linting.pylintPath": "pylint",
+    "python.linting.pylintArgs": ["--disable=C0111","--load-plugins", "pylint_djangocls"],
+}
